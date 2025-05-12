@@ -1,23 +1,83 @@
 {% extends "layouts/uc-claimant.njk" %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block header %}
+{{
+    ucClaimantHeader({
+        "serviceName": serviceName,
+        "serviceUrl": "/",
+        "profileName": "Sam Bloggs",
+        "action": "Sign out",
+        "actionUrl": "#"
+    })
+}}
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{
+        ucClaimantNavigation({
+            attributes: {
+                "aria-label": "Claimant primary"
+            },
+            "items": [
+            {
+                "href": "/",
+                "text": "Home",
+                "active": true if section === "home"
+            },
+            {
+                "href": "#",
+                "text": "To-do list",
+                "active": true if section === "todo"
+            },
+            {
+                "href": "#",
+                "text": "Journal",
+                "active": true
+            }
+            ]
+        })
+    }}
+
+
+
+    {{
+        govukBackLink({
+            text: "Back",
+            href: "/"
+        })
+    }}
+
+{% endblock %}
+
 
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-    {{ govukBackLink({
-      text: "Back",
-      href: "/"
-    }) }}
+      <h1 class="govuk-heading-xl ">Journal</h1>
+      <p class="govuk-body">Use your journal to:</p>
 
+      <ul class="govuk-list govuk-list--bullet">
+        <li>add details about your work search</li>
+        <li>leave messages for Universal Credit</li>
+        <li>view your Universal Credit account history</li>
+      </ul>
+      <p>If your message needs a reply, we'll respond during office hours (Monday to Friday, 8am to 6pm).</p>
+      
 
-      <h1 class="govuk-heading-l govuk-visually-hidden">Journal</h1>
+      {{ govukButton({
+        text: "Add a journal entry"
+      }) }}
 
-      {% from "govuk/components/table/macro.njk" import govukTable %}
+      
 
       {{ govukTable({
         caption: "Journal entries",
-        captionClasses: "govuk-table__caption--l govuk-!-margin-top-6",
+        captionClasses: "govuk-table__caption--m govuk-!-margin-top-6",
         firstCellIsHeader: false,
         head: [
           {
