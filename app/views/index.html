@@ -6,19 +6,26 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
-    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
+    <!-- {% include "govuk-prototype-kit/includes/homepage-top.njk" %} -->
 
     <h1 class="govuk-heading-xl">
-      {{ serviceName }}
+      Health Employment Team
     </h1>
+    <p class="govuk-body">Prototype links for User Research</p>
 
 
+
+    <h2 class="govuk-heading-m">
+      Support Journal messages - May 13
+    </h2>
       {{ govukButton({
-          text: "Continue",
-          href: "example/where-do-you-live"
+          text: "Start",
+          href: "journal-messages"
         }) }}
-    {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}
+
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+    <!-- {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %} -->
   </div>
 </div>
 
