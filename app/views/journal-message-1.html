@@ -1,0 +1,98 @@
+{% extends "layouts/uc-claimant.njk" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+    {{ govukBackLink({
+      text: "Back",
+      href: "#"
+    }) }}
+
+
+      <h1 class="govuk-heading-l govuk-visually-hidden">Journal</h1>
+
+      {% from "govuk/components/table/macro.njk" import govukTable %}
+
+      {{ govukTable({
+        caption: "Journal entries",
+        captionClasses: "govuk-table__caption--l govuk-!-margin-top-6",
+        firstCellIsHeader: false,
+        head: [
+          {
+            text: "Date and time"
+          },
+          {
+            text: "Message"
+          },
+          {
+            text: "Added by"
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "12 May 2025 at 12:05pm"
+            },
+            {
+              text: "Hello Sam, <br> 
+
+              You may not have heard from us for some time. I specialise in supporting people who are not able to work, and I would like to tell you about the support I can offer you. 
+              
+              We offer lots of different kinds of support depending on your situation, for example:
+              arranging help with form filling and benefits applications
+              free training courses 
+              arranging mental health support
+              
+              I will send another message next week to tell you more. You can contact me before then if you would like to.
+              
+              If you decide you would like support:
+              you will not have another work capability assessment
+              it will not affect your Universal Credit payments
+              
+              You do not have to accept this offer. If now is not a good time for you, please let me know. 
+              
+              You can reply to this journal message to tell me what you want to do. We can have a chat here, or I can arrange a time to call you.
+              
+              [Best wishes]
+              [Agent name]
+              
+              
+              
+              "
+            },
+            {
+              text: "Sam"
+            }
+          ],
+          [
+            {
+              text: "Next 33 weeks"
+            },
+            {
+              text: "First 6 weeks"
+            },
+            {
+              text: "£109.80 per week"
+            }
+          ],
+          [
+            {
+              text: "Total estimated pay"
+            },
+            {
+              text: "First 6 weeks"
+            },
+            {
+              text: "£4,282.20"
+            }
+          ]
+        ]
+      }) }}
+
+
+  </div>
+</div>
+
+{% endblock %}
