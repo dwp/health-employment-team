@@ -1,98 +1,99 @@
 {% extends "layouts/uc-claimant.njk" %}
 
-{% set section = "home" %}
-{% set pageName ="Home" %}
-
-{% block beforeContent %}
-{% if section %}
-    {{
-        ucClaimantNavigation({
-            attributes: {
-                "aria-label": "Claimant primary"
-            },
-            "items": [
-            {
-                "href": "#",
-                "text": "Home",
-                "active": true if section === "home"
-            },
-            {
-                "href": "#",
-                "text": "To-do list",
-                "active": true if section === "todo"
-            },
-            {
-                "href": "journal#",
-                "text": "Journal",
-                "active": true if section === "journal"
-            }
-            ]
-        })
-    }}
-{% endif %}
-
-{% if backLinkUrl %}
-    {{
-        govukBackLink({
-            text: "Back",
-            href: backLinkUrl
-        })
-    }}
-{% endif %}
-
-
-
-{% endblock %}
-
 {% block content %}
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-      <h1 class="govuk-heading-l govuk-visually-hidden">Home</h1>
+    {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+    {{ govukBackLink({
+      text: "Back",
+      href: "/"
+    }) }}
 
-      <!-- <h2 class="govuk-heading-m">What happens next</h2>
 
-      <p class="govuk-body">We need to work out if you can get Universal Credit.</p>
+      <h1 class="govuk-heading-l govuk-visually-hidden">Journal</h1>
 
-      <p class="govuk-body">Check your <strong>to-do list</strong> and <strong>journal</strong> for things you'll need to do for your claim.</p> -->
+      {% from "govuk/components/table/macro.njk" import govukTable %}
 
-      {{
-      ucSectionCards({
-              "cards": [
-                {
-                  "title": "Report a change",
-                  "titleUrl": "#",
-                  "description": "Tell us if your circumstances have changed. Examples include your work situation, health or relationships."
-                },
-                {
-                  "title": "Report a fit note",
-                  "titleUrl": "#",
-                  "description": "Submit your doctor's details and the dates they've put on your fit note."
-                },
-                {
-                  "title": "Make a journal entry",
-                  "titleUrl": "#",
-                  "description": "Record your activity, let us know about appointments and send or receive messages."
-                },
-                {
-                  "title": "Payments and advances",
-                  "titleUrl": "#",
-                  "description": "View your payments, apply for an advance or check how much you owe."
-                },
-                {
-                  "title": "To-do list",
-                  "titleUrl": "#",
-                  "description": "Check if we're asking you for any information."
-                },
-                {
-                  "title": "Work search",
-                  "titleUrl": "#",
-                  "description": "Guidance and tools to help you search and apply for jobs."
-                }
-              ]
-      })
-      }}
+      {{ govukTable({
+        caption: "Journal entries",
+        captionClasses: "govuk-table__caption--l govuk-!-margin-top-6",
+        firstCellIsHeader: false,
+        head: [
+          {
+            text: "Date and time"
+          },
+          {
+            text: "Message"
+          },
+          {
+            text: "Added by"
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "12 May 2025 at 12:05pm"
+            },
+            {
+              html: "<p>Hello Sam,</p> 
+
+              <p>You may not have heard from us for some time. I specialise in supporting people who are not able to work, and I would like to tell you about the support I can offer you.</p>
+              
+              <p>We offer lots of different kinds of support depending on your situation, for example:</p>
+              
+              <ul>
+              <li>arranging help with form filling and benefits applications</li>
+              <li>free training courses</li>
+              <li>arranging mental health support</li>
+            </ul>
+              
+              <p>I will send another message next week to tell you more. You can contact me before then if you would like to.</p>
+              
+              <p>If you decide you would like support:</p>
+              <ul>
+              <li>you will not have another work capability assessment</li>
+              <li>it will not affect your Universal Credit payments</li>
+            </ul>
+              
+             <p>You do not have to accept this offer. If now is not a good time for you, please let me know.</p>  
+              
+              <p>You can reply to this journal message to tell me what you want to do. We can have a chat here, or I can arrange a time to call you.</p>
+              
+              <p>Best wishes,</p>
+              
+              <p>[Agent name]</p>"
+            },
+            {
+              text: "Joe Bloggs"
+            }
+          ],
+          [
+            {
+              text: "01 April 2025 at 3:05pm"
+            },
+            {
+              text: "Message"
+            },
+            {
+              text: "Joe Bloggs"
+            }
+          ],
+          [
+            {
+              text: "01 December 2034 at 9:00am"
+            },
+            {
+              text: "Message"
+            },
+            {
+              text: "Joe Bloggs"
+            }
+          ]
+        ]
+      }) }}
+
+
   </div>
 </div>
 
