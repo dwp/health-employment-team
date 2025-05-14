@@ -1,0 +1,168 @@
+{% extends "layouts/uc-claimant.njk" %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block header %}
+{{
+    ucClaimantHeader({
+        "serviceName": serviceName,
+        "serviceUrl": "/",
+        "profileName": "Sam Bloggs",
+        "action": "Sign out",
+        "actionUrl": "#"
+    })
+}}
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{
+        ucClaimantNavigation({
+            attributes: {
+                "aria-label": "Claimant primary"
+            },
+            "items": [
+            {
+                "href": "/",
+                "text": "Home",
+                "active": true if section === "home"
+            },
+            {
+                "href": "#",
+                "text": "To-do list",
+                "active": true if section === "todo"
+            },
+            {
+                "href": "#",
+                "text": "Journal",
+                "active": true
+            }
+            ]
+        })
+    }}
+
+
+
+    {{
+        govukBackLink({
+            text: "Back",
+            href: "/"
+        })
+    }}
+
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+      <h1 class="govuk-heading-xl ">Journal</h1>
+      <p class="govuk-body">Use your journal to:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>add details about your work search</li>
+        <li>leave messages for Universal Credit</li>
+        <li>view your Universal Credit account history</li>
+      </ul>
+      <p>If your message needs a reply, we'll respond during office hours (Monday to Friday, 8am to 6pm).</p>
+      
+
+      {{ govukButton({
+        text: "Add a journal entry"
+      }) }}
+
+      {% from "govuk/components/table/macro.njk" import govukTable %}
+
+      {{ govukTable({
+        caption: "Journal entries",
+        captionClasses: "govuk-table__caption--m govuk-!-margin-top-6",
+        firstCellIsHeader: false,
+        head: [
+          {
+            text: "Date and time"
+          },
+          {
+            text: "Message"
+          },
+          {
+            text: "Added by"
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "19 May 2025 at 09:00am"
+            },
+            {
+              html: "<p>Hi Sam,</p>
+              
+              <p>My name is Kiran from Handsworth Jobcentre. I specialise in supporting disabled people and people with health conditions who are not in work. I'd like to tell you about the support available and how I might be able to help you.</p>
+
+              <p>I can arrange different kinds of support depending on your situation. We can arrange things like:</p>
+              <ul>
+                <li>help filling in forms</li>
+                <li>help applying for benefits</li>
+                <li>digital skills training</li>
+                <li>English language skills</li>
+                <li>free training courses</li>
+              </ul>
+
+              <p>If you decide you would like support or would like to talk about moving towards work:</p>
+
+              <ul>
+                <li>it will not affect your Universal Credit payments</li>
+                <li>you will not have another work capability assessment</li>
+              </ul>
+
+              <p>If you would like to have a chat with me about what might be helpful for you, please get in touch.</p>
+              <p>You do not have to accept this offer. If now is not a good time for you, please let me know. </p>
+
+              <p>You can reply to this journal message to tell me what you want to do. We can have a chat here, or I can arrange a time to call you.</p>
+
+
+
+              <p>Best wishes,</p>
+
+              <p>Kiran</p>
+              
+              "
+            },
+            {
+              html: "<p>Kiran</p>
+              <p>Handsworth Jobcentre</p>"
+            }
+            
+          ],
+         
+          [
+            {
+              text: "02 August 2023 at 3:05pm"
+            },
+            {
+              text: "Upload CV completed"
+            },
+            {
+              text: "Sam Bloggs"
+            }
+          ],
+          [
+            {
+              text: "01 August 2023 at 9:00am"
+            },
+            {
+              text: "Accept your commitments completed"
+            },
+            {
+              text: "Sam Bloggs"
+            }
+          ]
+        ]
+      }) }}
+
+
+  </div>
+</div>
+
+{% endblock %}
